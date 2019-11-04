@@ -30,7 +30,12 @@ const cli = async () => {
     "h:mm:ss A"
   );
 
-  console.log(`🌅 Sunrise: ${sunrise}`);
+  const sunset = moment(weatherData.sunlightTimes[0].sunset, "X").format(
+    "h:mm:ss A"
+  );
+
+  console.log(`🌅  Sunrise: ${sunrise}`);
+  console.log(`🌆  Sunset:  ${sunset}`);
 };
 
 export default cli;
