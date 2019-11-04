@@ -1,6 +1,8 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import moment from "moment";
+import util from "util";
+import orderBy from "lodash.orderby";
 
 import { createTitle } from "./utilities";
 import { getWaveData, getWeatherData } from "./api";
@@ -26,6 +28,12 @@ const cli = async () => {
     moment(waveData.timestamp, "X").format("MMMM Do YYYY, h:mm:ss a")
   );
 
+  const sortedWaveData = orderBy(
+    filteredWaveData,
+    ["surf.optimalScore", "surf.max"],
+    ["desc", "desc"]
+  );
+
   const sunrise = moment(weatherData.sunlightTimes[0].sunrise, "X").format(
     "h:mm:ss A"
   );
@@ -34,7 +42,12 @@ const cli = async () => {
     "h:mm:ss A"
   );
 
+  const optimalTime = moment(sortedWaveData[0].timestamp, "X").format(
+    "h:mm:ss A"
+  );
+
   console.log(`🌅  Sunrise: ${sunrise}`);
+  console.log(`🏄‍  Optimal:  ${optimalTime}`);
   console.log(`🌆  Sunset:  ${sunset}`);
 };
 

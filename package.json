@@ -21,6 +21,8 @@
     "core-js": "^3.3.6",
     "figlet": "^1.2.4",
     "gradient-string": "^1.2.0",
+    "lodash.orderby": "^4.6.0",
+    "lodash.random": "^3.2.0",
     "moment": "^2.24.0",
     "regenerator-runtime": "^0.13.3"
   },
