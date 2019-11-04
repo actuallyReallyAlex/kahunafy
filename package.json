@@ -1,0 +1,36 @@
+{
+  "name": "shorex",
+  "version": "0.1.0",
+  "description": "A CLI tool to get surf conditions at your favorite breaks.",
+  "main": "index.js",
+  "repository": "https://github.com/alexlee-dev/shorex.git",
+  "author": "alexlee-dev <alex@alexlee.dev>",
+  "license": "MIT",
+  "bin": {
+    "shorex": "./index.js"
+  },
+  "scripts": {
+    "build": "rimraf lib && babel src -d lib",
+    "start-server": "nodemon api/index.js",
+    "dev": "cross-env NODE_ENV=development shorex"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "boxen": "^4.1.0",
+    "chalk": "^2.4.2",
+    "core-js": "^3.3.6",
+    "figlet": "^1.2.4",
+    "gradient-string": "^1.2.0",
+    "moment": "^2.24.0",
+    "regenerator-runtime": "^0.13.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "cross-env": "^6.0.3",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.4",
+    "rimraf": "^3.0.0"
+  }
+}
