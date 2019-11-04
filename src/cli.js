@@ -26,7 +26,11 @@ const cli = async () => {
     moment(waveData.timestamp, "X").format("MMMM Do YYYY, h:mm:ss a")
   );
 
-  console.log({ times });
+  const sunrise = moment(weatherData.sunlightTimes[0].sunrise, "X").format(
+    "h:mm:ss A"
+  );
+
+  console.log(`🌅 Sunrise: ${sunrise}`);
 };
 
 export default cli;
