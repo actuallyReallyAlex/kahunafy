@@ -42,12 +42,13 @@ const cli = async () => {
     "h:mm:ss A"
   );
 
-  const optimalTime = moment(sortedWaveData[0].timestamp, "X").format(
-    "h:mm:ss A"
-  );
+  const optimalTime =
+    sortedWaveData.length > 0
+      ? moment(sortedWaveData[0].timestamp, "X").format("h:mm:ss A")
+      : "Tomorrow";
 
   console.log(`🌅  Sunrise: ${sunrise}`);
-  console.log(`🏄‍  Optimal:  ${optimalTime}`);
+  console.log(`🏄‍  Optimal: ${optimalTime}`);
   console.log(`🌆  Sunset:  ${sunset}`);
 };
 
