@@ -15,6 +15,12 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
     try {
       console.log(chalk.yellow(`Current Break: ${state.currentBreak.name}`));
       console.log("\n");
+
+      if (state.currentBreak.name === null) {
+        // * Prompt user to set current break 1st
+        await setCurrentBreak(state);
+      }
+
       const { menuAction } = await inquirer.prompt([
         {
           type: "list",
