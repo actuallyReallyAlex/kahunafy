@@ -1,9 +1,11 @@
-export const apiUrlBase = () =>
+import { SurfSpotGroup } from "./types";
+
+export const apiUrlBase = (): string =>
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
     : "https://services.surfline.com/kbyg/spots/forecasts";
 
-export const surfspots = [
+export const surfspots: SurfSpotGroup = [
   {
     continent: "North America",
     country: "United States",
