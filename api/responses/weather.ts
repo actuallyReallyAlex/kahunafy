@@ -1,23 +1,24 @@
-const moment = require("moment");
+import moment from "moment";
+import { WeatherData, WeatherResponse } from "../../types";
 
-const createWeatherObj = timestamp => ({
+const createWeatherObj = (timestamp: string): WeatherData => ({
   timestamp: timestamp,
   temperature: 65.1,
   condition: "CLEAR_NO_RAIN"
 });
 
-const response = () => {
-  const res = {};
-
-  res.associated = {
-    units: {
-      temperature: "F",
-      tideHeight: "FT",
-      waveHeight: "FT",
-      windSpeed: "KTS"
-    },
-    utcOffset: -8,
-    weatherIconPath: "https://wa.cdn-surfline.com/quiver/0.6.2/weathericons"
+export const weatherResponse = (): WeatherResponse => {
+  const res: WeatherResponse = {
+    associated: {
+      units: {
+        temperature: "F",
+        tideHeight: "FT",
+        waveHeight: "FT",
+        windSpeed: "KTS"
+      },
+      utcOffset: -8,
+      weatherIconPath: "https://wa.cdn-surfline.com/quiver/0.6.2/weathericons"
+    }
   };
 
   const sunlightTimesArray = [];
@@ -66,8 +67,4 @@ const response = () => {
   };
 
   return res;
-};
-
-module.exports = {
-  response: response
 };

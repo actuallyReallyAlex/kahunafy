@@ -1,8 +1,10 @@
-const express = require("express");
+import express from "express";
+
+import { waveResponse } from "./responses/wave";
+import { weatherResponse } from "./responses/weather";
+
 const app = express();
 const port = 5000;
-const waveResponse = require("./responses/wave").response;
-const weatherResponse = require("./responses/weather").response;
 
 app.get("/", (req, res) => res.send("Hello World!"));
 

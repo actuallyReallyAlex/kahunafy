@@ -1,7 +1,9 @@
-const moment = require("moment");
-const random = require("lodash.random");
+import moment from "moment";
+import random from "lodash.random";
 
-const createWaveObject = timestamp => ({
+import { WaveData, WaveResponse, WaveDataGroup } from "../../types";
+
+const createWaveObject = (timestamp: string): WaveData => ({
   timestamp: timestamp,
   surf: {
     min: random(0, 2),
@@ -54,34 +56,34 @@ const createWaveObject = timestamp => ({
   ]
 });
 
-const response = () => {
-  const res = {};
-
-  res.associated = {
-    units: {
-      temperature: "F",
-      tideHeight: "FT",
-      waveHeight: "FT",
-      windSpeed: "KTS"
-    },
-    utcOffset: -8,
-    location: {
-      lon: -117.385,
-      lat: 33.191
-    },
-    forecastLocation: {
-      lon: -117.386,
-      lat: 33.191
-    },
-    offshoreLocation: {
-      lon: -117.4,
-      lat: 33.15
+export const waveResponse = (): WaveResponse => {
+  const res: WaveResponse = {
+    associated: {
+      units: {
+        temperature: "F",
+        tideHeight: "FT",
+        waveHeight: "FT",
+        windSpeed: "KTS"
+      },
+      utcOffset: -8,
+      location: {
+        lon: -117.385,
+        lat: 33.191
+      },
+      forecastLocation: {
+        lon: -117.386,
+        lat: 33.191
+      },
+      offshoreLocation: {
+        lon: -117.4,
+        lat: 33.15
+      }
     }
   };
 
-  const waveArray = [];
+  const waveArray: WaveDataGroup = [];
 
-  const startTimestamp = moment()
+  const startTimestamp: string = moment()
     .hour(0)
     .minute(0)
     .second(0)
@@ -101,8 +103,4 @@ const response = () => {
   };
 
   return res;
-};
-
-module.exports = {
-  response: response
 };
