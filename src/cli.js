@@ -1,14 +1,14 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import moment from "moment";
-import util from "util";
-import orderBy from "lodash.orderby";
 
-import { createTitle } from "./utilities";
+import orderBy from "lodash.orderby";
+import moment from "moment";
+import { titleScreen } from "pickitt";
+
 import { getWaveData, getWeatherData } from "./api";
 
 const cli = async () => {
-  createTitle();
+  await titleScreen("Shorex");
 
   const waveData = await getWaveData("584204204e65fad6a7709435");
   const weatherData = await getWeatherData("584204204e65fad6a7709435");
