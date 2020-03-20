@@ -13,7 +13,7 @@
     "lint": "eslint src/**/*",
     "build-api": "rimraf mock-server && tsc -p ./tsconfig-api.json",
     "build-app": "rimraf lib && tsc -p ./tsconfig-app.json",
-    "start-server": "nodemon api/index.js",
+    "start-server": "nodemon mock-server/api/index.js",
     "dev": "cross-env NODE_ENV=development shorex"
   },
   "dependencies": {
