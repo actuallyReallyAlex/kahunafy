@@ -4,6 +4,7 @@ import inquirer from "inquirer";
 import { AppState } from "../types";
 import optimalTime from "./optimalTime";
 import setCurrentBreak from "./currentBreak";
+import { titleScreen } from "pickitt";
 
 /**
  * Displays Main Menu to user.
@@ -13,13 +14,15 @@ import setCurrentBreak from "./currentBreak";
 export const displayMainMenu: Function = (state: AppState): Promise<void> =>
   new Promise(async (resolve: Function, reject: Function) => {
     try {
-      console.log(chalk.yellow(`Current Break: ${state.currentBreak.name}`));
-      console.log("\n");
-
       if (state.currentBreak.name === null) {
         // * Prompt user to set current break 1st
         await setCurrentBreak(state);
+
+        await titleScreen("Shorex");
       }
+
+      console.log(chalk.yellow(`Current Break: ${state.currentBreak.name}`));
+      console.log("\n");
 
       const { menuAction } = await inquirer.prompt([
         {
