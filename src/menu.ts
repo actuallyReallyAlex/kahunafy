@@ -3,6 +3,7 @@ import inquirer from "inquirer";
 
 import { AppState } from "../types";
 import optimalTime from "./optimalTime";
+import setCurrentBreak from "./currentBreak";
 
 /**
  * Displays Main Menu to user.
@@ -21,6 +22,7 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
           name: "menuAction",
           choices: [
             { value: "optimalTime", name: "Optimal Time" },
+            { value: "setCurrentBreak", name: "Set Current Break" },
             new inquirer.Separator(),
             { value: "exit", name: "Exit" }
           ]
@@ -52,6 +54,10 @@ export const interpretMenuAction: Function = async (
         await inquirer.prompt([
           { type: "confirm", message: "Continue?", name: "continue" }
         ]);
+        state.menuActionEmitter.emit("actionCompleted", state);
+      },
+      setCurrentBreak: async (): Promise<void> => {
+        await setCurrentBreak(state);
         state.menuActionEmitter.emit("actionCompleted", state);
       }
     };
