@@ -1,6 +1,7 @@
 import EventEmitter from "events";
 
 export interface AppState {
+  currentBreak: SurfSpotData;
   menuAction: null | string;
   menuActionEmitter: EventEmitter.EventEmitter;
 }
@@ -22,8 +23,8 @@ interface SurfData {
 export interface SurfSpotData {
   continent: string;
   country: string;
-  region: string;
   name: string;
+  region: string;
   spotId: string;
 }
 
