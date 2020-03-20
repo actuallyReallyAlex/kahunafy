@@ -47,7 +47,7 @@ export const interpretMenuAction: Function = async (
     const actions = {
       exit: (): void => process.exit(),
       optimalTime: async (): Promise<void> => {
-        const { sunrise, optimal, sunset } = await optimalTime();
+        const { sunrise, optimal, sunset } = await optimalTime(state);
         console.log(`🌅  Sunrise: ${sunrise}`);
         console.log(`🏄‍  Optimal: ${optimal}`);
         console.log(`🌆  Sunset:  ${sunset}`);

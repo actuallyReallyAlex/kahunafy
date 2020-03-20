@@ -2,28 +2,24 @@ import orderBy from "lodash.orderby";
 import moment from "moment";
 
 import {
-  SurfSpotData,
   SurfWindow,
   WaveData,
   WaveDataGroup,
-  WeatherDataGroup
+  WeatherDataGroup,
+  AppState
 } from "../types";
 
 import { getWaveData, getWeatherData } from "./api";
-import { surfSpots } from "./constants";
 
 /**
  * Determines the optimal time to go surfing based on the break, sunrise and sunset.
  */
-const optimalTime: Function = (): Promise<object> =>
+const optimalTime: Function = (state: AppState): Promise<object> =>
   new Promise(async (resolve: Function, reject: Function) => {
     try {
-      const spotId = "584204204e65fad6a7709435";
-      const surfSpot: SurfSpotData = surfSpots.find(
-        (spot: SurfSpotData) => spot.spotId === spotId
+      const waveData: WaveDataGroup = await getWaveData(
+        state.currentBreak.spotId
       );
-      console.log(surfSpot.name);
-      const waveData: WaveDataGroup = await getWaveData(spotId);
       const weatherData: WeatherDataGroup = await getWeatherData(
         "584204204e65fad6a7709435"
       );
