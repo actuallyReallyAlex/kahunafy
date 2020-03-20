@@ -1,6 +1,7 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
+import Configstore from "configstore";
 import { titleScreen } from "pickitt";
 
 import EventEmitter from "events";
@@ -17,8 +18,11 @@ const shorex = async (): Promise<void> => {
     await interpretMenuAction(state);
   });
 
+  const config = new Configstore("shorex");
+
   const state: AppState = {
-    currentBreak: {
+    config,
+    currentBreak: config.get("currentBreak") || {
       continent: null,
       country: null,
       name: null,

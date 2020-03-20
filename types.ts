@@ -1,6 +1,8 @@
 import EventEmitter from "events";
+import Configstore from "configstore";
 
 export interface AppState {
+  config: Configstore;
   currentBreak: SurfSpotData;
   menuAction: null | string;
   menuActionEmitter: EventEmitter.EventEmitter;
