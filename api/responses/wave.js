@@ -1,11 +1,12 @@
 const moment = require("moment");
+const random = require("lodash.random");
 
 const createWaveObject = timestamp => ({
   timestamp: timestamp,
   surf: {
-    min: 1.02,
-    max: 2,
-    optimalScore: 2
+    min: random(0, 2),
+    max: random(2, 5),
+    optimalScore: random(0, 5)
   },
   swells: [
     {
