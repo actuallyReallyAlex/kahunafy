@@ -62,3 +62,6 @@ typings/
 
 # Build
 lib/
+
+# Mock Server Build
+mock-server/

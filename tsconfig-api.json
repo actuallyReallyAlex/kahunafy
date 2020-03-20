@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "outDir": "./mock-server",
+    "allowJs": true,
+    "target": "es5",
+    "moduleResolution": "Node",
+    "esModuleInterop": true
+  },
+  "include": ["./api/**/*"]
+}

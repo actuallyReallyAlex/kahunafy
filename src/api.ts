@@ -1,7 +1,7 @@
 import axios from "axios";
 import { apiUrlBase } from "./constants";
 
-import { WaveDataGroup, WeatherDataGroup } from "./types";
+import { WaveDataGroup, WeatherDataGroup } from "../types";
 
 export const getWaveData = (spotId: string): Promise<WaveDataGroup> =>
   new Promise((resolve: Function, reject: Function) => {

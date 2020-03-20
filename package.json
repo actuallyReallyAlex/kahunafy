@@ -11,8 +11,9 @@
   },
   "scripts": {
     "lint": "eslint src/**/*",
-    "build": "rimraf lib && tsc",
-    "start-server": "nodemon api/index.js",
+    "build-api": "rimraf mock-server && tsc -p ./tsconfig-api.json",
+    "build-app": "rimraf lib && tsc -p ./tsconfig-app.json",
+    "start-server": "nodemon mock-server/api/index.js",
     "dev": "cross-env NODE_ENV=development shorex"
   },
   "dependencies": {
@@ -29,7 +30,9 @@
     "regenerator-runtime": "^0.13.5"
   },
   "devDependencies": {
+    "@types/express": "^4.17.3",
     "@types/lodash.orderby": "^4.6.6",
+    "@types/lodash.random": "^3.2.6",
     "@types/node": "^13.9.2",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",

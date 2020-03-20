@@ -43,7 +43,36 @@ export interface WaveData {
   timestamp: string;
 }
 
-interface WeatherData {
+interface LocationData {
+  lat: number;
+  lon: number;
+}
+
+type UnitStandard = {
+  temperature: "F";
+  tideHeight: "FT";
+  waveHeight: "FT";
+  windSpeed: "KTS";
+};
+
+interface WaveResponseAssociated {
+  forecastLocation: LocationData;
+  location: LocationData;
+  offshoreLocation: LocationData;
+  units: UnitStandard;
+  utcOffset: number;
+}
+
+type WaveResponseData = {
+  wave: WaveDataGroup;
+};
+
+export interface WaveResponse {
+  associated: WaveResponseAssociated;
+  data?: WaveResponseData;
+}
+
+export interface WeatherData {
   condition: string;
   temperature: number;
   timestamp: string;
@@ -54,4 +83,15 @@ export type WaveDataGroup = WaveData[];
 export interface WeatherDataGroup {
   sunlightTimes: SunlightTime[];
   weather: WeatherData[];
+}
+
+interface WeatherResponseAssociated {
+  units: UnitStandard;
+  utcOffset: number;
+  weatherIconPath: string;
+}
+
+export interface WeatherResponse {
+  associated: WeatherResponseAssociated;
+  data?: WeatherDataGroup;
 }

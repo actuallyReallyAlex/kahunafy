@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const cli = require("./lib/cli").default;
+const cli = require("./lib/src/cli").default;
 
 cli();
