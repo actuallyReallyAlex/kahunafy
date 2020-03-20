@@ -1,3 +1,10 @@
+import EventEmitter from "events";
+
+export interface AppState {
+  menuAction: null | string;
+  menuActionEmitter: EventEmitter.EventEmitter;
+}
+
 interface SunlightTime {
   dawn: string;
   dusk: string;
