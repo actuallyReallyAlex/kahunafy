@@ -1,4 +1,4 @@
-import { SurfSpotGroup } from "./types";
+import { SurfSpotGroup } from "../types";
 
 export const apiUrlBase = (): string =>
   process.env.NODE_ENV === "development"

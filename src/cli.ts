@@ -11,7 +11,7 @@ import {
   WaveData,
   WaveDataGroup,
   WeatherDataGroup
-} from "./types";
+} from "../types";
 
 import { getWaveData, getWeatherData } from "./api";
 import { surfSpots } from "./constants";
