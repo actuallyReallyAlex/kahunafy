@@ -14,7 +14,8 @@
     "build-api": "rimraf mock-server && tsc -p ./tsconfig-api.json",
     "build-app": "rimraf lib && tsc -p ./tsconfig-app.json",
     "start-server": "nodemon mock-server/api/index.js",
-    "dev": "cross-env NODE_ENV=development shorex"
+    "dev": "cross-env NODE_ENV=development shorex",
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "dependencies": {
     "axios": "^0.19.2",
