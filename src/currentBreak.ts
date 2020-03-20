@@ -23,9 +23,11 @@ const setCurrentBreak: Function = (state: AppState): Promise<void> =>
           }))
         }
       ]);
-      state.currentBreak = surfSpots.find(
+      const currentBreak = surfSpots.find(
         (surfSpot: SurfSpotData) => surfSpot.spotId === chosenBreak
       );
+      state.currentBreak = currentBreak;
+      state.config.set("currentBreak", currentBreak);
       resolve();
     } catch (e) {
       reject(e);
