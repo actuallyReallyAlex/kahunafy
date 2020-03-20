@@ -18,6 +18,13 @@ const shorex = async (): Promise<void> => {
   });
 
   const state: AppState = {
+    currentBreak: {
+      continent: null,
+      country: null,
+      name: null,
+      region: null,
+      spotId: null
+    },
     menuAction: null,
     menuActionEmitter
   };

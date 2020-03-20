@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import inquirer from "inquirer";
 
 import { AppState } from "../types";
@@ -11,6 +12,8 @@ import optimalTime from "./optimalTime";
 export const displayMainMenu: Function = (state: AppState): Promise<void> =>
   new Promise(async (resolve: Function, reject: Function) => {
     try {
+      console.log(chalk.yellow(`Current Break: ${state.currentBreak.name}`));
+      console.log("\n");
       const { menuAction } = await inquirer.prompt([
         {
           type: "list",
