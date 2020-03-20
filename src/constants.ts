@@ -5,7 +5,7 @@ export const apiUrlBase = (): string =>
     ? "http://localhost:5000"
     : "https://services.surfline.com/kbyg/spots/forecasts";
 
-export const surfspots: SurfSpotGroup = [
+export const surfSpots: SurfSpotGroup = [
   {
     continent: "North America",
     country: "United States",

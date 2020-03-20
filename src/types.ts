@@ -12,7 +12,7 @@ interface SurfData {
   optimalScore: number;
 }
 
-interface SurfSpotData {
+export interface SurfSpotData {
   continent: string;
   country: string;
   region: string;
