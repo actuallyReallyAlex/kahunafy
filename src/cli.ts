@@ -5,14 +5,29 @@ import orderBy from "lodash.orderby";
 import moment from "moment";
 import { titleScreen } from "pickitt";
 
-import { getWaveData, getWeatherData } from "./api";
+import {
+  SurfSpotData,
+  SurfWindow,
+  WaveData,
+  WaveDataGroup,
+  WeatherDataGroup
+} from "./types";
 
-import { SurfWindow, WaveData, WaveDataGroup, WeatherDataGroup } from "./types";
+import { getWaveData, getWeatherData } from "./api";
+import { surfSpots } from "./constants";
 
 const cli = async (): Promise<void> => {
   await titleScreen("Shorex");
 
-  const waveData: WaveDataGroup = await getWaveData("584204204e65fad6a7709435");
+  const spotId = "584204204e65fad6a7709435";
+
+  const surfSpot: SurfSpotData = surfSpots.find(
+    (spot: SurfSpotData) => spot.spotId === spotId
+  );
+
+  console.log(surfSpot.name);
+
+  const waveData: WaveDataGroup = await getWaveData(spotId);
 
   const weatherData: WeatherDataGroup = await getWeatherData(
     "584204204e65fad6a7709435"
