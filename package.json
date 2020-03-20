@@ -9,6 +9,13 @@
   "bin": {
     "shorex": "./index.js"
   },
+  "files": [
+    "lib",
+    "index.js",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "lint": "eslint src/**/*",
     "build-api": "rimraf mock-server && tsc -p ./tsconfig-api.json",
