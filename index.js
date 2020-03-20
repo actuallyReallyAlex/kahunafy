@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const cli = require("./lib/src/cli").default;
+const shorex = require("./lib/src/index").default;
 
-cli();
+shorex();
