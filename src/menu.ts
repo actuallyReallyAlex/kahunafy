@@ -1,11 +1,12 @@
 import chalk from "chalk";
 import inquirer from "inquirer";
+import moment from "moment";
 
 import { AppState } from "../types";
 import optimalTime from "./optimalTime";
 import setCurrentBreak from "./currentBreak";
 import { titleScreen } from "pickitt";
-import { getSunrise } from "./weather";
+import { getSunlightTimes } from "./weather";
 
 /**
  * Displays Main Menu to user.
@@ -22,10 +23,16 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
         await titleScreen("Shorex");
       }
 
-      const sunrise = await getSunrise(state.currentBreak.spotId);
+      const sunlightTimes = await getSunlightTimes(state.currentBreak.spotId);
+      const { sunrise, sunset } = sunlightTimes;
 
       console.log(chalk.yellow(`Current Break: ${state.currentBreak.name}`));
-      console.log(chalk.yellow(`Sunrise: ${sunrise}`));
+      console.log(
+        chalk.yellow(`Sunrise: ${moment(sunrise, "X").format("h:mm:ss A")}`)
+      );
+      console.log(
+        chalk.yellow(`Sunset: ${moment(sunset, "X").format("h:mm:ss A")}`)
+      );
       console.log("\n");
 
       const { menuAction } = await inquirer.prompt([
