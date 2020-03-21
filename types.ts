@@ -8,7 +8,7 @@ export interface AppState {
   menuActionEmitter: EventEmitter.EventEmitter;
 }
 
-interface SunlightTime {
+export interface SunlightTime {
   dawn: string;
   dusk: string;
   midnight: string;
