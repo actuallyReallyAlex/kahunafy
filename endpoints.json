@@ -1,0 +1,10 @@
+{
+  "fetchCamOfTheMoment": "https://services.surfline.com/kbyg/cotm",
+  "fetchRegionalOverview": "https://services.surfline.com/kbyg/regions/overview?SUBREGION_ID",
+  "fetchRegionalConditionForecast": "https://services.surfline.com/kbyg/regions/forecasts/conditions?SUBREGION_ID",
+  "fetchNearestSpot": "https://services.surfline.com/kbyg/mapview/spot?SPOT_ID",
+  "fetchBatchSubregions": "https://services.surfline.com/subregions/batch?BATCH",
+  "fetchFavoriteSubregions": "https://services.surfline.com/kbyg/favorites/subregions?sortBy=alphaDesc",
+  "fetchNearbySpots": "https://services.surfline.com/kbyg/spots/nearby?spotId=SPOT_ID",
+  "fetchReport": "https://services.surfline.com/kbyg/spots/reports?spotId=SPOT_ID"
+}
