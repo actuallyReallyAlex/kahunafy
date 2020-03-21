@@ -5,6 +5,7 @@ import { AppState } from "../types";
 import optimalTime from "./optimalTime";
 import setCurrentBreak from "./currentBreak";
 import { titleScreen } from "pickitt";
+import { getSunrise } from "./weather";
 
 /**
  * Displays Main Menu to user.
@@ -21,7 +22,10 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
         await titleScreen("Shorex");
       }
 
+      const sunrise = await getSunrise(state.currentBreak.spotId);
+
       console.log(chalk.yellow(`Current Break: ${state.currentBreak.name}`));
+      console.log(chalk.yellow(`Sunrise: ${sunrise}`));
       console.log("\n");
 
       const { menuAction } = await inquirer.prompt([
