@@ -53,6 +53,37 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
           state.currentReport.associated.units.waveHeight
       );
       console.log(
+        chalk.yellow(`Tide: \n  Previous: `) +
+          state.currentReport.forecast.tide.previous.type +
+          "  " +
+          state.currentReport.forecast.tide.previous.height +
+          state.currentReport.associated.units.tideHeight +
+          "  " +
+          moment(
+            state.currentReport.forecast.tide.previous.timestamp,
+            "X"
+          ).format("h:mm:ss A") +
+          chalk.yellow(`\n  Current: `) +
+          state.currentReport.forecast.tide.current.type +
+          "  " +
+          state.currentReport.forecast.tide.current.height +
+          state.currentReport.associated.units.tideHeight +
+          "  " +
+          moment(
+            state.currentReport.forecast.tide.current.timestamp,
+            "X"
+          ).format("h:mm:ss A") +
+          chalk.yellow(`\n  Next: `) +
+          state.currentReport.forecast.tide.next.type +
+          "  " +
+          state.currentReport.forecast.tide.next.height +
+          state.currentReport.associated.units.tideHeight +
+          "  " +
+          moment(state.currentReport.forecast.tide.next.timestamp, "X").format(
+            "h:mm:ss A"
+          )
+      );
+      console.log(
         chalk.yellow(`Air Temp: `) +
           state.currentReport.forecast.weather.temperature +
           "°" +
