@@ -38,6 +38,12 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
       );
       console.log(chalk.yellow(`Optimal Time: `) + optimalFormatted);
       console.log(
+        chalk.yellow(`Air Temp: `) +
+          state.currentReport.forecast.weather.temperature +
+          "°" +
+          state.currentReport.associated.units.temperature
+      );
+      console.log(
         chalk.yellow(`Water Temp: \n  Max: `) +
           state.currentReport.forecast.waterTemp.max +
           "°" +
