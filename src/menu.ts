@@ -3,10 +3,9 @@ import inquirer from "inquirer";
 import moment from "moment";
 
 import { AppState } from "../types";
-import optimalTime from "./optimalTime";
 import setCurrentBreak from "./currentBreak";
 import { titleScreen } from "pickitt";
-import { getSunlightTimes } from "./weather";
+import { getOptimalTime, getSunlightTimes } from "./weather";
 
 /**
  * Displays Main Menu to user.
@@ -26,12 +25,19 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
       const sunlightTimes = await getSunlightTimes(state.currentBreak.spotId);
       const { sunrise, sunset } = sunlightTimes;
 
+      const optimal = await getOptimalTime(state.currentBreak.spotId);
+
       console.log(chalk.yellow(`Current Break: ${state.currentBreak.name}`));
       console.log(
         chalk.yellow(`Sunrise: ${moment(sunrise, "X").format("h:mm:ss A")}`)
       );
       console.log(
         chalk.yellow(`Sunset: ${moment(sunset, "X").format("h:mm:ss A")}`)
+      );
+      console.log(
+        chalk.yellow(
+          `Optimal Time: ${moment(optimal, "X").format("h:mm:ss A")}`
+        )
       );
       console.log("\n");
 
@@ -41,7 +47,6 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
           message: "Main Menu",
           name: "menuAction",
           choices: [
-            { value: "optimalTime", name: "Optimal Time" },
             { value: "setCurrentBreak", name: "Set Current Break" },
             new inquirer.Separator(),
             { value: "exit", name: "Exit" }
@@ -66,16 +71,6 @@ export const interpretMenuAction: Function = async (
   try {
     const actions = {
       exit: (): void => process.exit(),
-      optimalTime: async (): Promise<void> => {
-        const { sunrise, optimal, sunset } = await optimalTime(state);
-        console.log(`🌅  Sunrise: ${sunrise}`);
-        console.log(`🏄‍  Optimal: ${optimal}`);
-        console.log(`🌆  Sunset:  ${sunset}`);
-        await inquirer.prompt([
-          { type: "confirm", message: "Continue?", name: "continue" }
-        ]);
-        state.menuActionEmitter.emit("actionCompleted", state);
-      },
       setCurrentBreak: async (): Promise<void> => {
         await setCurrentBreak(state);
         state.menuActionEmitter.emit("actionCompleted", state);
