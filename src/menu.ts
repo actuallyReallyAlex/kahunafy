@@ -26,19 +26,17 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
       const { sunrise, sunset } = sunlightTimes;
 
       const optimal = await getOptimalTime(state.currentBreak.spotId);
+      const optimalFormatted =
+        optimal[0] === "T" ? optimal : moment(optimal, "X").format("h:mm:ss A");
 
-      console.log(chalk.yellow(`Current Break: ${state.currentBreak.name}`));
+      console.log(chalk.yellow(`Current Break: `) + state.currentBreak.name);
       console.log(
-        chalk.yellow(`Sunrise: ${moment(sunrise, "X").format("h:mm:ss A")}`)
+        chalk.yellow(`Sunrise: `) + moment(sunrise, "X").format("h:mm:ss A")
       );
       console.log(
-        chalk.yellow(`Sunset: ${moment(sunset, "X").format("h:mm:ss A")}`)
+        chalk.yellow(`Sunset: `) + moment(sunset, "X").format("h:mm:ss A")
       );
-      console.log(
-        chalk.yellow(
-          `Optimal Time: ${moment(optimal, "X").format("h:mm:ss A")}`
-        )
-      );
+      console.log(chalk.yellow(`Optimal Time: `) + optimalFormatted);
       console.log("\n");
 
       const { menuAction } = await inquirer.prompt([
