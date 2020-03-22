@@ -6,9 +6,11 @@ import { titleScreen } from "pickitt";
 
 import EventEmitter from "events";
 
+import setCurrentBreak from "./currentBreak";
 import { displayMainMenu, interpretMenuAction } from "./menu";
 
 import { AppState } from "../types";
+import getReport from "./report";
 
 const shorex = async (): Promise<void> => {
   const menuActionEmitter = new EventEmitter.EventEmitter();
@@ -29,11 +31,19 @@ const shorex = async (): Promise<void> => {
       region: null,
       spotId: null
     },
+    currentReport: null,
     menuAction: null,
     menuActionEmitter
   };
 
   await titleScreen("Shorex");
+
+  if (state.currentBreak.name === null) {
+    // * Prompt user to set current break first
+    await setCurrentBreak(state);
+  }
+
+  state.currentReport = await getReport(state.currentBreak.spotId);
 
   await displayMainMenu(state);
 
