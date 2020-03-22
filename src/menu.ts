@@ -43,6 +43,16 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
           state.currentReport.forecast.conditions.value
       );
       console.log(
+        chalk.yellow(`Wave Height: `) +
+          state.currentReport.forecast.waveHeight.humanRelation +
+          chalk.yellow(` \n  Max: `) +
+          state.currentReport.forecast.waveHeight.max +
+          state.currentReport.associated.units.waveHeight +
+          chalk.yellow(`  Min: `) +
+          state.currentReport.forecast.waveHeight.min +
+          state.currentReport.associated.units.waveHeight
+      );
+      console.log(
         chalk.yellow(`Air Temp: `) +
           state.currentReport.forecast.weather.temperature +
           "°" +
@@ -53,7 +63,7 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
           state.currentReport.forecast.waterTemp.max +
           "°" +
           state.currentReport.associated.units.temperature +
-          chalk.yellow(`  Min: `) +
+          chalk.yellow(`   Min: `) +
           state.currentReport.forecast.waterTemp.min +
           "°" +
           state.currentReport.associated.units.temperature
