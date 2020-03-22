@@ -37,6 +37,17 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
         chalk.yellow(`Sunset: `) + moment(sunset, "X").format("h:mm:ss A")
       );
       console.log(chalk.yellow(`Optimal Time: `) + optimalFormatted);
+      console.log(
+        chalk.yellow(`Water Temp: \n  Max: `) +
+          state.currentReport.forecast.waterTemp.max +
+          "°" +
+          state.currentReport.associated.units.temperature +
+          chalk.yellow(`  Min: `) +
+          state.currentReport.forecast.waterTemp.min +
+          "°" +
+          state.currentReport.associated.units.temperature
+      );
+
       console.log("\n");
 
       const { menuAction } = await inquirer.prompt([

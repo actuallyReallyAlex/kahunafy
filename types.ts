@@ -113,7 +113,11 @@ interface WaveHeightData {
 interface ForecastData {
   conditions: ConditionData;
   note: null;
+  swells: ReportSwellData[];
+  tide: TideDataGroup;
+  waterTemp: WaterTempData;
   waveHeight: WaveHeightData;
+  weather: ReportWeatherData;
   wind: WindData;
 }
 
@@ -165,11 +169,7 @@ export interface SurflineReport {
   forecast: ForecastData;
   report: ReportData;
   spot: SpotData;
-  swells: ReportSwellData[];
-  tide: TideDataGroup;
   units: UnitStandard;
-  waterTemp: WaterTempData;
-  weather: ReportWeatherData;
 }
 
 interface SurfData {
