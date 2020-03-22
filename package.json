@@ -30,6 +30,7 @@
     "chalk": "^3.0.0",
     "configstore": "^5.0.1",
     "core-js": "^3.6.4",
+    "degrees-to-direction": "^1.1.1",
     "figlet": "^1.3.0",
     "gradient-string": "^1.2.0",
     "inquirer": "^7.1.0",

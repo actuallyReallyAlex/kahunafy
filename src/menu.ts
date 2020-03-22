@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import d2d from "degrees-to-direction";
 import inquirer from "inquirer";
 import moment from "moment";
 
@@ -56,6 +57,15 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
           state.currentReport.forecast.waterTemp.min +
           "°" +
           state.currentReport.associated.units.temperature
+      );
+      console.log(
+        chalk.yellow(`Wind Speed: `) +
+          state.currentReport.forecast.wind.speed +
+          state.currentReport.associated.units.windSpeed
+      );
+      console.log(
+        chalk.yellow(`Wind Direction: `) +
+          d2d(state.currentReport.forecast.wind.direction)
       );
 
       console.log("\n");
