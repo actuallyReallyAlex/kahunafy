@@ -3,8 +3,10 @@ import chalk from "chalk";
 import d2d from "degrees-to-direction";
 import inquirer from "inquirer";
 import moment from "moment";
+import { titleScreen } from "pickitt";
 
 import { AppState } from "../types";
+import { version } from "../package.json";
 
 import { blankBoxenStyle } from "./constants";
 import setCurrentBreak from "./currentBreak";
@@ -169,6 +171,7 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
           choices: [
             { value: "setCurrentBreak", name: "Set Current Break" },
             new inquirer.Separator(),
+            { value: "about", name: "About" },
             { value: "exit", name: "Exit" }
           ]
         }
@@ -181,6 +184,30 @@ export const displayMainMenu: Function = (state: AppState): Promise<void> =>
   });
 
 /**
+ * Pauses the process execution and waits for the user to hit a key.
+ * @returns {Promise} Resolves when user has entered a keystroke.
+ * @async
+ */
+const keypress = async (): Promise<void> => {
+  try {
+    process.stdin.setRawMode(true);
+    return new Promise((resolve, reject) => {
+      try {
+        process.stdin.resume();
+        process.stdin.once("data", () => {
+          process.stdin.setRawMode(false);
+          resolve();
+        });
+      } catch (e) {
+        return reject(e);
+      }
+    });
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+/**
  * Interprets user selected menu action.
  * @param {AppState} state State of application.
  * @returns {Promise}
@@ -190,6 +217,17 @@ export const interpretMenuAction: Function = async (
 ): Promise<void> => {
   try {
     const actions = {
+      about: async (): Promise<void> => {
+        await titleScreen("Shorex");
+        console.log(boxen(chalk.yellow(`v${version}`), blankBoxenStyle));
+        console.log(
+          boxen(chalk.yellow(`Author: `) + "Alex Lee", blankBoxenStyle)
+        );
+
+        console.log("Press any key to return to Main Menu ...");
+        await keypress();
+        state.menuActionEmitter.emit("actionCompleted", state);
+      },
       exit: (): void => process.exit(),
       setCurrentBreak: async (): Promise<void> => {
         await setCurrentBreak(state);
