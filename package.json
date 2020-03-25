@@ -1,6 +1,6 @@
 {
   "name": "kahunafy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A CLI tool to get surf conditions at your favorite breaks, using Surfline's API.",
   "main": "index.js",
   "repository": "https://github.com/alexlee-dev/kahunafy.git",
