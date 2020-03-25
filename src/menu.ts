@@ -3,7 +3,6 @@ import chalk from "chalk";
 import d2d from "degrees-to-direction";
 import inquirer from "inquirer";
 import moment from "moment";
-import { titleScreen } from "pickitt";
 
 import { AppState } from "../types";
 
@@ -12,10 +11,10 @@ import setCurrentBreak from "./currentBreak";
 import { getOptimalTime, getSunlightTimes } from "./weather";
 
 const displayReportData: Function = async (state: AppState): Promise<void> => {
-  const sunlightTimes = await getSunlightTimes(state.currentBreak.spotId);
+  const sunlightTimes = await getSunlightTimes(state.currentBreak.spot);
   const { sunrise, sunset } = sunlightTimes;
 
-  const optimal = await getOptimalTime(state.currentBreak.spotId);
+  const optimal = await getOptimalTime(state.currentBreak.spot);
   const optimalFormatted =
     optimal[0] === "T" ? optimal : moment(optimal, "X").format("h:mm:ss A");
 
@@ -160,13 +159,6 @@ const displayReportData: Function = async (state: AppState): Promise<void> => {
 export const displayMainMenu: Function = (state: AppState): Promise<void> =>
   new Promise(async (resolve: Function, reject: Function) => {
     try {
-      if (state.currentBreak.name === null) {
-        // * Prompt user to set current break 1st
-        await setCurrentBreak(state);
-
-        await titleScreen("Shorex");
-      }
-
       await displayReportData(state);
 
       const { menuAction } = await inquirer.prompt([

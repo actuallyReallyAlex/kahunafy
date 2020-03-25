@@ -1,6 +1,8 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
+import chalk from "chalk";
+import clear from "clear";
 import Configstore from "configstore";
 import { titleScreen } from "pickitt";
 
@@ -25,29 +27,42 @@ const shorex = async (): Promise<void> => {
   const state: AppState = {
     config,
     currentBreak: config.get("currentBreak") || {
-      continent: null,
-      country: null,
+      _id: null,
+      liesIn: null,
+      location: null,
       name: null,
-      region: null,
-      spotId: null
+      spot: null,
+      type: null
     },
     currentReport: null,
     menuAction: null,
     menuActionEmitter
   };
 
-  await titleScreen("Shorex");
+  try {
+    if (state.currentBreak.name === null) {
+      // * Prompt user to set current break first
+      clear();
+      console.log(
+        `Welcome to ${chalk.yellow(
+          "Shorex"
+        )}! Please select your home break. You can edit this later.`
+      );
+      await setCurrentBreak(state);
+    }
 
-  if (state.currentBreak.name === null) {
-    // * Prompt user to set current break first
-    await setCurrentBreak(state);
+    await titleScreen("Shorex");
+
+    state.currentReport = await getReport(state.currentBreak.spot);
+
+    await displayMainMenu(state);
+
+    await interpretMenuAction(state);
+  } catch (e) {
+    console.error("ERROR");
+    console.log(state);
+    console.error(e);
   }
-
-  state.currentReport = await getReport(state.currentBreak.spotId);
-
-  await displayMainMenu(state);
-
-  await interpretMenuAction(state);
 };
 
 export default shorex;
