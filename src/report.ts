@@ -7,7 +7,7 @@ import { SurflineReport } from "../types";
  * @param {string} spotId spotId for current break.
  * @returns {Proomise<SurflineReport>}
  */
-const getReport: Function = (spotId: string): Promise<SurflineReport> =>
+const getReport = (spotId: string): Promise<SurflineReport> =>
   new Promise((resolve: Function, reject: Function) => {
     try {
       axios
