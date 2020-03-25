@@ -218,7 +218,7 @@ export const interpretMenuAction: Function = async (
   try {
     const actions = {
       about: async (): Promise<void> => {
-        await titleScreen("Shorex");
+        await titleScreen("Kahunafy");
         console.log(boxen(chalk.yellow(`v${version}`), blankBoxenStyle));
         console.log(
           boxen(chalk.yellow(`Author: `) + "Alex Lee", blankBoxenStyle)

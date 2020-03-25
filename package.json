@@ -1,13 +1,13 @@
 {
-  "name": "shorex",
+  "name": "kahunafy",
   "version": "0.2.0",
   "description": "A CLI tool to get surf conditions at your favorite breaks.",
   "main": "index.js",
-  "repository": "https://github.com/alexlee-dev/shorex.git",
+  "repository": "https://github.com/alexlee-dev/kahunafy.git",
   "author": "alexlee-dev <alex@alexlee.dev>",
   "license": "MIT",
   "bin": {
-    "shorex": "./index.js"
+    "kahunafy": "./index.js"
   },
   "files": [
     "lib",
@@ -21,8 +21,8 @@
     "build-api": "rimraf mock-server && tsc -p ./tsconfig-api.json",
     "build-app": "rimraf lib && tsc -p ./tsconfig-app.json",
     "start-server": "nodemon mock-server/api/index.js",
-    "dev": "cross-env NODE_ENV=development shorex",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node index.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
