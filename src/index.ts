@@ -14,15 +14,15 @@ import { displayMainMenu, interpretMenuAction } from "./menu";
 import { AppState } from "../types";
 import getReport from "./report";
 
-const shorex = async (): Promise<void> => {
+const kahunafy = async (): Promise<void> => {
   const menuActionEmitter = new EventEmitter.EventEmitter();
   menuActionEmitter.on("actionCompleted", async state => {
-    await titleScreen("Shorex");
+    await titleScreen("Kahunafy");
     await displayMainMenu(state);
     await interpretMenuAction(state);
   });
 
-  const config = new Configstore("shorex");
+  const config = new Configstore("kahunafy");
 
   const state: AppState = {
     config,
@@ -45,13 +45,13 @@ const shorex = async (): Promise<void> => {
       clear();
       console.log(
         `Welcome to ${chalk.yellow(
-          "Shorex"
+          "Kahunafy"
         )}! Please select your home break. You can edit this later.`
       );
       await setCurrentBreak(state);
     }
 
-    await titleScreen("Shorex");
+    await titleScreen("Kahunafy");
 
     state.currentReport = await getReport(state.currentBreak.spot);
 
@@ -65,4 +65,4 @@ const shorex = async (): Promise<void> => {
   }
 };
 
-export default shorex;
+export default kahunafy;
