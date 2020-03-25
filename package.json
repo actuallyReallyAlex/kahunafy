@@ -10,7 +10,7 @@
     "kahunafy": "./index.js"
   },
   "files": [
-    "lib",
+    "lib/*",
     "index.js",
     "LICENSE",
     "package.json",
