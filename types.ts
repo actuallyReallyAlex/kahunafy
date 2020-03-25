@@ -3,10 +3,31 @@ import Configstore from "configstore";
 
 export interface AppState {
   config: Configstore;
-  currentBreak: SurfSpotData;
+  currentBreak: Spot;
   currentReport: SurflineReport;
   menuAction: null | string;
   menuActionEmitter: EventEmitter.EventEmitter;
+}
+
+export interface SpotLocation {
+  coordinates: number[];
+  popular?: boolean;
+  type: string;
+}
+
+export interface Spot {
+  _id: string;
+  liesIn: string[];
+  location: SpotLocation;
+  name: string;
+  spot: string;
+  type: "spot";
+}
+
+export interface Subregion {
+  _id: string;
+  name: string;
+  spots: Spot[];
 }
 
 export interface SunlightTime {
