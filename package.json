@@ -10,11 +10,7 @@
     "kahunafy": "./index.js"
   },
   "files": [
-    "lib/*",
-    "index.js",
-    "LICENSE",
-    "package.json",
-    "README.md"
+    "lib"
   ],
   "scripts": {
     "lint": "eslint src/**/*",

@@ -6,7 +6,6 @@ import moment from "moment";
 import { titleScreen } from "pickitt";
 
 import { AppState } from "../types";
-import { version } from "../package.json";
 
 import { blankBoxenStyle } from "./constants";
 import setCurrentBreak from "./currentBreak";
@@ -219,7 +218,6 @@ export const interpretMenuAction: Function = async (
     const actions = {
       about: async (): Promise<void> => {
         await titleScreen("Kahunafy");
-        console.log(boxen(chalk.yellow(`v${version}`), blankBoxenStyle));
         console.log(
           boxen(chalk.yellow(`Author: `) + "Alex Lee", blankBoxenStyle)
         );
